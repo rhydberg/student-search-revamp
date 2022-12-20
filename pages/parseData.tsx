@@ -5,8 +5,6 @@ import STUDENTS from "../data.tsx";
 
 
 function rollToYear(roll) {
-	console.log("n1g4");
-
 	if ((roll[0] === "Y") && (roll[1]) > "7") {
 		return roll.slice(0,2);
 	} else if (roll.slice(0,2) < '30') {

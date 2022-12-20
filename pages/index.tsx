@@ -11,13 +11,20 @@ import STUDENTS from "../data.tsx";
 import {rollToYear} from "./parseData.tsx";
 import TreeCard from "./treeSCard.tsx";
 
+export default function Home(props) {
 
-export default function Home(props)
-{
+	const [students, setStudents] = useState([]);
+	const [darkMode, setDarkMode]=useState(true);
+	const [currDisp, setCurr] = useState();
 
-  const [students, setStudents] = useState([]);
+	//server-side render doesn't have access to localStorage so start off with true
+	
+	//props should only change at start -> shouldn't change afterwards -> this should be good for loading darkmode pref at start 
+	useEffect(() => {
+		setDarkMode(localStorage.getItem("darkmode") !== "false")
+	},[props]);
 
-  const doQuery = (query) =>{
+	const doQuery = (query) =>{
 		return STUDENTS.filter((st) => {
 			let ret = true;
 			for (const key in query) {
@@ -35,7 +42,7 @@ export default function Home(props)
 		});
 	}
 
-  const sendQuery = (query)=> {
+	const sendQuery = (query)=> {
 		setStudents(doQuery(query));
 	}
 
@@ -55,26 +62,36 @@ export default function Home(props)
 		/>);
 	}
 
-  var [darkMode, setDarkMode]=useState("true");
-  const [currDisp, setCurr] = useState();
-  const darkTheme = createTheme({
-  palette: {
-    mode: 'dark',
-  },
-});
+	useEffect(() => {
+		if (darkMode) {
+			document.body.style.backgroundColor = "#000";
+		} else {
+			document.body.style.backgroundColor = "#efefef";
+		}
+	});
 
-  console.log(darkMode);
-  return (
+  
+  	return (
     <div>
-    <ThemeProvider theme={darkTheme}>
+    <ThemeProvider theme={darkMode 
+			? createTheme({
+				palette:{
+					mode: "dark",
+				}
+			})
+			: createTheme({
+				
+			})
+  	}>
       <Fab className="fab"
       onClick={()=>{
   				setDarkMode(!darkMode);
-  			}}
-  		>{darkMode ?
+  				localStorage.setItem("darkmode", !darkMode);}}
+  	>
+  	{darkMode ?
   			<LightModeRounded color="background"/>
   			: <DarkModeSharp color="background"/>}
-          </Fab>
+    </Fab>
 
       <Options
     		sendQuery={sendQuery}
@@ -93,7 +110,6 @@ export default function Home(props)
     		: ""}
     	</Overlay>
     </ThemeProvider>
-
     </div>
   );
 }
