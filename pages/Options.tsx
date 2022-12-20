@@ -36,77 +36,81 @@ function Options(props) {
 	
 	return (
 		<Paper className="options">
-		
-			<MultiSelectField 
-				query={query}
-				name="batch"
-				options={listOpts.batch}
-				setQuery={setQuery}
-				sendQuery={props.sendQuery}
-			/>
-
-			<FormControl variant="filled">
-				<InputLabel id="gender-label">Gender</InputLabel>
-				<Select
-					className="field"
-					labelId="gender-label"
-					value={query.gender}
-					onChange={(event) => {
-						setQuery(Object.assign(query,{gender:event.target.value}));
-						props.sendQuery(Object.assign(query,{gender:event.target.value}));
-					}}
-				>
-					<MenuItem value="">Any</MenuItem>
-					<MenuItem value="F">Female</MenuItem>
-					<MenuItem value="M">Male</MenuItem>
-				</Select>
-			</FormControl>
-
-			<MultiSelectField 
-				query={query}
-				name="hall"
-				options={listOpts.hall}
-				setQuery={setQuery}
-				sendQuery={props.sendQuery}
-			/>
-			
-			<MultiSelectField 
-				query={query}
-				name="prog"
-				options={listOpts.prog}
-				setQuery={setQuery}
-				sendQuery={props.sendQuery}
-			/>
-			
-			<MultiSelectField 
-				query={query}
-				name="dept"
-				options={listOpts.dept}
-				setQuery={setQuery}
-				sendQuery={props.sendQuery}
-			/>
-			
-			<MultiSelectField 
-				query={query}
-				name="bloodgrp"
-				options={listOpts.bloodgrp}
-				setQuery={setQuery}
-				sendQuery={props.sendQuery}
-			/>
-			
-			<FormControl variant="filled">
-				<TextField
-					className="field home"
-					label="Hometown"
-					value={query.address}
-					onChange={(event) => {
-						setQuery(Object.assign(query,{address:event.target.value}));
-						props.sendQuery(Object.assign(query,{address:event.target.value}));
-					}}
+			<div className="row">
+				<MultiSelectField 
+					query={query}
+					name="batch"
+					options={listOpts.batch}
+					setQuery={setQuery}
+					sendQuery={props.sendQuery}
 				/>
-			</FormControl>
+
+				<FormControl variant="filled">
+					<InputLabel id="gender-label">Gender</InputLabel>
+					<Select
+						className="field"
+						labelId="gender-label"
+						value={query.gender}
+						onChange={(event) => {
+							setQuery(Object.assign(query,{gender:event.target.value}));
+							props.sendQuery(Object.assign(query,{gender:event.target.value}));
+						}}
+					>
+						<MenuItem value="">Any</MenuItem>
+						<MenuItem value="F">Female</MenuItem>
+						<MenuItem value="M">Male</MenuItem>
+					</Select>
+				</FormControl>
+
+				<MultiSelectField 
+					query={query}
+					name="hall"
+					options={listOpts.hall}
+					setQuery={setQuery}
+					sendQuery={props.sendQuery}
+				/>
+			</div>
+			<div className="row">
+				<MultiSelectField 
+					query={query}
+					name="prog"
+					options={listOpts.prog}
+					setQuery={setQuery}
+					sendQuery={props.sendQuery}
+				/>
 			
-			<FormControl variant="filled">
+				<MultiSelectField 
+					query={query}
+					name="dept"
+					options={listOpts.dept}
+					setQuery={setQuery}
+					sendQuery={props.sendQuery}
+				/>
+			
+				<MultiSelectField 
+					query={query}
+					name="bloodgrp"
+					options={listOpts.bloodgrp}
+					setQuery={setQuery}
+					sendQuery={props.sendQuery}
+				/>
+			</div>
+			
+			<div className="row">
+				<FormControl variant="filled">
+					<TextField
+						className="field home"
+						label="Hometown"
+						value={query.address}
+						onChange={(event) => {
+							setQuery(Object.assign(query,{address:event.target.value}));
+							props.sendQuery(Object.assign(query,{address:event.target.value}));
+						}}
+					/>
+				</FormControl>
+			</div>
+			
+			<FormControl variant="filled" className="row">
 				<TextField
 					className="field main-text"
 					label="Enter name, username or roll no."

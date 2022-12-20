@@ -1,6 +1,6 @@
-// import STUDENTS from "./student_data_getter.tsx";
+import STUDENTS from "./student_data_getter.tsx";
 
-import STUDENTS from "../data.tsx";
+// import STUDENTS from "../data.tsx";
 
 
 

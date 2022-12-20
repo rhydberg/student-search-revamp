@@ -7,7 +7,7 @@ import {ThemeProvider,createTheme} from "@mui/material/styles";
 import TextField from '@mui/material/TextField';
 import Fab from "@mui/material/Fab";
 import {DarkModeSharp, LightModeRounded} from "@mui/icons-material";
-import STUDENTS from "../data.tsx";
+import STUDENTS from "./student_data_getter.tsx";
 import {rollToYear} from "./parseData.tsx";
 import TreeCard from "./treeSCard.tsx";
 

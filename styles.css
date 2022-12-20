@@ -7,18 +7,22 @@
 
 .options {
 	width: 80%;
-	max-width: 500px;
+	max-width: 900px;
 	margin: auto;
 	padding:10px;
+	display:flex;
+	flex-direction:column;
 }
 
-.options * {
-	margin: 10px;
-
+.options  > * { /* 1st level children*/
+	padding: 10px;
+	width:100%;
+	display:flex;
+	justify-content:space-evenly;
 }
 
 .options .field {
-	width: 100px;
+	width: 200px;
 }
 
 .options .main-text {

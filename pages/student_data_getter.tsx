@@ -3,11 +3,17 @@ let students=[];
 try {
 	console.log("trying to get data from local storage");
 	students = JSON.parse(localStorage.getItem("studentdb"));
+	console.log("great success");
 } catch (Exception) {
 	console.log("failed, importing data");
 	import("../merged1.json").then((db) => {
 		students = db.default;
-		localStorage.setItem("studentdb", JSON.stringify(students));
+		try {
+			localStorage.setItem("studentdb", JSON.stringify(students));
+		} catch (Exception) {
+			//this usually fails when localStorage isn't available because server side render - in which case nothing should be done... AFAIK
+			console.log(Exception);
+		}
 	})
 	.catch((except) => {
 		console.log(except);
