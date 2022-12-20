@@ -21,8 +21,12 @@ export default function Overlay(props) {
 				setOpen(false);
 				props.clearOverlay();
 			}}
+			
 		>
 		<div
+			style={{
+				maxWidth:"80vw"
+			}}
 			onClick={(event) => {event.stopPropagation();}}
 		>
 		{props.children}

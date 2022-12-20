@@ -15,16 +15,13 @@ function Display(props) {
 	
 	const students = props.toShow.map(el => {
 		return (
-			<div
-				key={el.i}
-				onClick={() => {props.displayCard(el)}}
-			>
 			<SCard 
 				data={el} 
-				displayCard={props.displayCard}
+				key={el.i}
+				onClick={() => {props.displayCard(el)}}
 				pointer={true}
+				compact={true}
 			/>
-			</div>
 	);});
 	
 	const infiniteScrollImplementation = () =>{

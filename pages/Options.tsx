@@ -74,6 +74,7 @@ function Options(props) {
 				<MultiSelectField 
 					query={query}
 					name="prog"
+					label="Programme"
 					options={listOpts.prog}
 					setQuery={setQuery}
 					sendQuery={props.sendQuery}
@@ -82,6 +83,7 @@ function Options(props) {
 				<MultiSelectField 
 					query={query}
 					name="dept"
+					label="Department"
 					options={listOpts.dept}
 					setQuery={setQuery}
 					sendQuery={props.sendQuery}
@@ -90,6 +92,7 @@ function Options(props) {
 				<MultiSelectField 
 					query={query}
 					name="bloodgrp"
+					label="Blood group"
 					options={listOpts.bloodgrp}
 					setQuery={setQuery}
 					sendQuery={props.sendQuery}
