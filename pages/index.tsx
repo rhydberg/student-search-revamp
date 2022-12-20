@@ -129,6 +129,7 @@ The changes if any will be reflected in about a week.
 					<Card
 						style={{
 							padding:"10px",
+							width:"80vw"
 						}}
 					>
 						<p>Press the 'copy' button to copy all email addresses.</p>
