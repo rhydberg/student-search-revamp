@@ -1,0 +1,50 @@
+.fab{
+    float:right;
+    right: 20px;
+    top:10px;
+
+}
+
+.options {
+	width: 80%;
+	max-width: 500px;
+	margin: auto;
+	padding:10px;
+}
+
+.options * {
+	margin: 10px;
+
+}
+
+.options .field {
+	width: 100px;
+}
+
+.options .main-text {
+	width:100%;
+}
+
+#display {
+	width:80%;
+	margin: auto;
+	display:flex;
+	justify-content:space-evenly;
+	flex-wrap:wrap;
+}
+
+#display > * {
+	margin:10px;
+	height: 300px;
+	width: 240px;
+	padding:10px;
+}
+
+#count {
+	display:flex;
+	justify-content:space-evenly;
+}
+
+#count * {
+	padding: 10px;
+}
