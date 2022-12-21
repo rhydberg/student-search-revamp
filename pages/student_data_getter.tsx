@@ -3,6 +3,7 @@ let students=[];
 try {
 	console.log("trying to get data from local storage");
 	students = JSON.parse(localStorage.getItem("studentdb"));
+	if (typeof(students) !== "array") throw new Error("localStorage doesn't have data yet");
 	console.log("great success");
 } catch (Exception) {
 	console.log("failed, importing data");
