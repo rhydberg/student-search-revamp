@@ -1,5 +1,6 @@
 import React, {useState, useCallback} from "react";
-import {InputLabel, TextField, Select, MenuItem, Paper, FormControl} from "@mui/material"
+import {InputLabel, TextField, Select, MenuItem, Paper, FormControl, InputAdornment, IconButton} from "@mui/material"
+import {ClearRounded} from "@mui/icons-material"
 import MultiSelectField from "./msf.tsx";
 import {data as listOpts} from "./parseData.tsx";
 import debounce from "./debounce.tsx"
@@ -117,12 +118,24 @@ function Options(props) {
 					/>
 				</FormControl>
 			</div>
-			
 			<FormControl variant="filled" className="row">
 				<TextField
 					className="field main-text"
 					label="Enter name, username or roll no."
 					value={query.name}
+					InputProps={{
+						endAdornment:(<InputAdornment position="end">
+							<IconButton 
+								disabled={query.name.length === 0}
+								onClick={() => {
+									setQuery({...query, name:""});
+									newsendQuery({...query, name:""});
+								}}
+							>
+								<ClearRounded />
+							</IconButton>
+						</InputAdornment>),
+					}}
 					onChange={(event) => {
 						setQuery({...query, name:event.target.value});
 						newsendQuery({...query, name:event.target.value});

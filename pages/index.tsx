@@ -33,7 +33,7 @@ export default function Home(props) {
 				if (query[key].length > 0) { //all the stuff inside the if statement will only narrow it down because && used so can just not do anything to ret if length is 0
 					if (key === "name") {
 						if (query.name === undefined) continue;
-						let bits = query.name.split(/\s+/);
+						let bits = query.name.toLowerCase().split(/\s+/);
 						let test = true;
 						for (const item of bits) {
 							if (!(st.n.toLowerCase().includes(item))) test = false;
