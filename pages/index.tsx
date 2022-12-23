@@ -27,13 +27,12 @@ export default function Home(props) {
 	},[props]);
 
 	const doQuery = (query) =>{
-		console.log(query);
-		console.log(query.name.split(/\s+/));
 		return STUDENTS.filter((st) => {
 			let ret = true;
 			for (const key in query) {
 				if (query[key].length > 0) { //all the stuff inside the if statement will only narrow it down because && used so can just not do anything to ret if length is 0
 					if (key === "name") {
+						if (query.name === undefined) continue;
 						let bits = query.name.split(/\s+/);
 						let test = true;
 						for (const item of bits) {
@@ -86,7 +85,7 @@ export default function Home(props) {
 		} else {
 			document.body.style.backgroundColor = "#efefef";
 		}
-	});
+	},[darkMode]);
 
   
   	return (
@@ -150,12 +149,12 @@ The changes if any will be reflected in about a week.
 								overflow:"auto"
 						}}
 						>
-						{students.map((el) => (el.u + "@iitk.ac.in")).join(", ")}
+						{students.filter((el) => (el.u.length > 0)).map((el) => (el.u + "@iitk.ac.in")).join(", ")}
 						</div>
 						<Button 
 							variant="contained"
 							onClick={() => {
-								navigator.clipboard.writeText(students.map((el) => (el.u + "@iitk.ac.in")).join(", "));
+								navigator.clipboard.writeText(students.filter((el) => (el.u.length > 0)).map((el) => (el.u + "@iitk.ac.in")).join(", "));
 							}}
 						>Copy</Button>
 					</Card>

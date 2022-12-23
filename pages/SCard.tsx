@@ -25,6 +25,7 @@ function SCard(props) {
 				<p>{props.data.n}</p>
 				<p>{props.data.i}</p>
 				<p>{props.data.d}</p>
+				<p>{props.data.u}</p>
 			</div>	
 		</Card>)
 		:(<Card 
