@@ -27,11 +27,22 @@ export default function Home(props) {
 	},[props]);
 
 	const doQuery = (query) =>{
+		console.log(query);
+		console.log(query.name.split(/\s+/));
 		return STUDENTS.filter((st) => {
 			let ret = true;
 			for (const key in query) {
 				if (query[key].length > 0) { //all the stuff inside the if statement will only narrow it down because && used so can just not do anything to ret if length is 0
-					if (typeof(query[key]) === "string") { //gender, hometown or name
+					if (key === "name") {
+						let bits = query.name.split(/\s+/);
+						let test = true;
+						for (const item of bits) {
+							if (!(st.n.toLowerCase().includes(item))) test = false;
+						}
+						if (!(test)) { //no name matches -> check roll no, username
+							ret = ret && (st.i.includes(query.name) || st.u.includes(query.name));
+						}
+					} else if (typeof(query[key]) === "string") { //gender, hometown or name
 						ret = ret && (st[key[0]].toLowerCase().includes(query[key].toLowerCase()));
 					} else if (key === "batch") {
 						ret = ret && (query.batch.includes(rollToYear(st.i)));

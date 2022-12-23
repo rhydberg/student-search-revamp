@@ -16,7 +16,9 @@ function SCard(props) {
 				display:"flex",
 				justifyContent:"space-evenly"
 			}}
-			onClick={props.onClick}
+			onClick={(event) => {
+				if (props.onClick !== undefined) props.onClick(event);
+			}}
 		>
 			<Image style={{width:150, height:150}} u={props.data.u} i={props.data.i} g={props.data.g} />
 			<div>
@@ -34,7 +36,10 @@ function SCard(props) {
 				justifyContent:"space-evenly",
 				alignItems:"center"
 			}}
-			onClick={props.onClick}
+			onClick={(event) => {
+				console.log("clicked");
+				if (props.onClick !== undefined) props.onClick(event);
+			}}
 		>
 			<Image style={{width:200, height:200}} u={props.data.u} i={props.data.i} g={props.data.g} />
 			<p>{props.data.n}</p>

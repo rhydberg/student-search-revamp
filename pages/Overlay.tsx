@@ -27,7 +27,11 @@ export default function Overlay(props) {
 			style={{
 				maxWidth:"80vw"
 			}}
-			onClick={(event) => {event.stopPropagation()}}
+			onClick={(event) => {
+				event.stopPropagation();
+				console.log(event.target);
+				console.log(event.currentTarget);
+			}}
 		>
 		{props.children}
 		</div>
