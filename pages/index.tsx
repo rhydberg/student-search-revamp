@@ -32,16 +32,39 @@ export default function Home(props) {
 			for (const key in query) {
 				if (query[key].length > 0) { //all the stuff inside the if statement will only narrow it down because && used so can just not do anything to ret if length is 0
 					if (key === "name") {
-						if (query.name === undefined) continue;
 						let bits = query.name.toLowerCase().split(/\s+/);
-						let test = true;
-						for (const item of bits) {
-							if (!(st.n.toLowerCase().includes(item))) test = false;
+						let bitslast = bits.pop();
+						let stbits = st.n.toLowerCase().split(/\s+/)
+						let bigtest = true;
+						for (const item of bits) { //each item must match at least one stitem -> go through all stitems, if still none then return false, otherwise keep going
+							let test = false;
+							for (const stitem of stbits) {
+								if (stitem === item) {
+									test = true;
+									break;
+								}
+							}
+							if (!test) {
+								bigtest = false;
+								break;
+							}
 						}
-						if (!(test)) { //no name matches -> check roll no, username
-							ret = ret && (st.i.includes(query.name) || st.u.includes(query.name));
+						if (bigtest) { //if bigtest not yet false, check last bit
+							let test = false;
+							for (const stitem of stbits) {
+								if (stitem.startsWith(bitslast)) {
+									test = true;
+									break;
+								}
+							}
+							if (!test) {
+								bigtest = false;
+							}
 						}
-					} else if (typeof(query[key]) === "string") { //gender, hometown or name
+						if (!(bigtest)) { //no name matches -> check roll no, username
+							ret = ret && (st.i.includes(query.name) || st.u.includes(query.name)); //if both are false, then ret becomes false
+						} //else: this is when bigtest is true, i.e. the name matches the students actual name - then don't do anything because ret is true by default
+					} else if (typeof(query[key]) === "string") { //gender or hometown
 						ret = ret && (st[key[0]].toLowerCase().includes(query[key].toLowerCase()));
 					} else if (key === "batch") {
 						ret = ret && (query.batch.includes(rollToYear(st.i)));
@@ -122,8 +145,7 @@ export default function Home(props) {
 						<p>You can customise the image shown here by placing a custom image in your iitk webhome folder called dp.jpg/dp.png such that going to http://home.iitk.ac.in/~yourusername/dp opens up that particular picture.</p>
 						<h1>How do I update the data shown here?</h1>
 						<p>The data here is scraped from the Office Automation Portal. The data there can be updated via the Login Based Services > Student Profile > PI form . If you have had a branch change, please go to the ID Cell and update your ID Card to update your branch.</p>
-
-The changes if any will be reflected in about a week. 
+						<p>The changes if any will be reflected in about a week. </p>
 					</Card>
 				);
 			}}

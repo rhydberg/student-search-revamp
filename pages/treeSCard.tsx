@@ -14,7 +14,7 @@ function TreeCard(props) {
 					{ props.baapu != undefined
 						? <SCard
 							pointer={true}
-							compact={true}
+							compact={"ultra"}
 							data={props.baapu}
 							onClick={()=>{
 								setOpen(false);
@@ -45,7 +45,7 @@ function TreeCard(props) {
 					{props.bacchas.map((el) => //this is fine because bacchas is *always* an array, no matter what - if no bacchas then it is an empty array - doQuery in App.js will simply return an empty array
 						<SCard
 							pointer={true}
-							compact={true}
+							compact={"ultra"}
 							data={el}
 							onClick={()=>{
 								setOpen(false);

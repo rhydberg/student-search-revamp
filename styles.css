@@ -55,8 +55,33 @@ body {
 }
 
 .student-card {
-	width: 400px;
+	border-radius: 20px;
+	width: 350px;
+	height: 560px;
 	padding:10px;
+	display:flex;
+	flex-direction:column;
+	justify-content:flex-start;
+	align-items:center
+}
+
+.student-card > * {
+	margin: 5px;
+}
+
+.student-card .more-data {
+	width:100%; 
+	padding-left:40px; 
+	margin-top:auto;
+}
+
+.student-card .more-data * {
+	margin: 5px;
+}
+
+.student-card .more-data > div {
+	display:flex;
+	justify-content:flex-start;
 }
 
 .student-card-compact {
@@ -64,6 +89,38 @@ body {
 	max-width: 400px;
 	height: 200px;
 	padding:10px;
+	border-radius: 10px;
+	display:flex;
+	justify-content:flex-start;
+}
+
+.student-card-compact p:first-child {
+	font-weight:bold;
+}
+
+.name, .roll, .dept {
+	text-align:center;
+}
+
+.name {
+	font-family:Helvetica;
+	font-weight:bold;
+	font-size:1.25em;
+}
+
+.roll {
+	font-size:1em;
+}
+
+.student-card-ultra-compact {
+	width: 100%;
+	max-width: 250px;
+	height: 150px;
+	padding: 10px;
+	border-radius: 75px;
+	display:flex;
+	justify-content:space-between;
+	align-items:center;
 }
 
 .tree-view {
