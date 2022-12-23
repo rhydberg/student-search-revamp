@@ -1,8 +1,13 @@
 import {InputLabel, Select, MenuItem, FormControl} from "@mui/material";
-import React from "react";
+import React, {useCallback} from "react";
+import debounce from "./debounce.tsx";
 
 export default function MultiSelectField(props) {
 	let querycopy = props.query; //stops trying to assign values to props.query
+	
+	const newsetQuery = useCallback(debounce(props.setQuery,1000),[]);
+	
+	
 	return (//idea behind taking "query" from options is to lift state up
 	<FormControl variant="filled" className="field">
 		<InputLabel id={`${props.name}-label`}>
@@ -16,8 +21,8 @@ export default function MultiSelectField(props) {
 			value={props.query[props.name]}
 			multiple
 			onChange={(event) => {
-				props.setQuery(Object.assign(querycopy,{[props.name]:event.target.value})); //basically just used for object composition - Object.assign returns the composed object
-				props.sendQuery(Object.assign(querycopy,{[props.name]:event.target.value}));
+				props.setQuery({...querycopy, [props.name]:event.target.value}); //basically just used for object composition - Object.assign returns the composed object
+				props.sendQuery({...querycopy, [props.name]:event.target.value});
 			}}
 		>
 			 {props.options.map((el) => (

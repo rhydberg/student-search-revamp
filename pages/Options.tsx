@@ -1,7 +1,8 @@
-import React, {useState} from "react";
+import React, {useState, useCallback} from "react";
 import {InputLabel, TextField, Select, MenuItem, Paper, FormControl} from "@mui/material"
 import MultiSelectField from "./msf.tsx";
 import {data as listOpts} from "./parseData.tsx";
+import debounce from "./debounce.tsx"
 
 
 /* options to include:
@@ -34,6 +35,10 @@ function Options(props) {
 		address:""
 	});
 	
+	const [test, settest] = useState({name:"", foo:"lol"});
+	
+	const newsendQuery = useCallback(debounce(props.sendQuery, 300),[]);
+	
 	return (
 		<Paper className="options">
 			<div className="row">
@@ -52,8 +57,8 @@ function Options(props) {
 						labelId="gender-label"
 						value={query.gender}
 						onChange={(event) => {
-							setQuery(Object.assign(query,{gender:event.target.value}));
-							props.sendQuery(Object.assign(query,{gender:event.target.value}));
+							setQuery({...query, gender:event.target.value});
+							props.sendQuery({...query, gender:event.target.value});
 						}}
 					>
 						<MenuItem value="">Any</MenuItem>
@@ -106,8 +111,8 @@ function Options(props) {
 						label="Hometown"
 						value={query.address}
 						onChange={(event) => {
-							setQuery(Object.assign(query,{address:event.target.value}));
-							props.sendQuery(Object.assign(query,{address:event.target.value}));
+							setQuery({...query, address:event.target.value});
+							newsendQuery(Object.assign(query,{address:event.target.value}));
 						}}
 					/>
 				</FormControl>
@@ -119,8 +124,8 @@ function Options(props) {
 					label="Enter name, username or roll no."
 					value={query.name}
 					onChange={(event) => {
-						setQuery(Object.assign(query,{name:event.target.value}));
-						props.sendQuery(Object.assign(query,{name:event.target.value}));
+						setQuery({...query, name:event.target.value});
+						newsendQuery({...query, name:event.target.value});
 					}}
 				/>
 			</FormControl>
