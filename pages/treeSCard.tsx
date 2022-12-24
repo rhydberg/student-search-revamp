@@ -10,7 +10,6 @@ function TreeCard(props) {
 		<div>
 			{open
 				? <div className="tree-view">
-					<div>
 					{ props.baapu != undefined
 						? <SCard
 							pointer={true}
@@ -23,8 +22,6 @@ function TreeCard(props) {
 						/>
 						: <Card>Not Available :(</Card>
 					}
-					</div>
-					<div>
 					<SCard 
 						pointer={true}
 						compact={true}
@@ -34,15 +31,11 @@ function TreeCard(props) {
 							props.displayCard(props.data);
 						}}
 					/>
-					</div>
 					<div
-						style={{
-							display:"flex",
-							width:"100%",
-							height:"100px"
-						}}
+						className="bacchas"
 					>
-					{props.bacchas.map((el) => //this is fine because bacchas is *always* an array, no matter what - if no bacchas then it is an empty array - doQuery in App.js will simply return an empty array
+					{props.bacchas.length > 0 
+					?props.bacchas.map((el) => //this is fine because bacchas is *always* an array, no matter what - if no bacchas then it is an empty array - doQuery in App.js will simply return an empty array
 						<SCard
 							pointer={true}
 							compact={"ultra"}
@@ -52,10 +45,15 @@ function TreeCard(props) {
 								props.displayCard(el);
 							}}
 						/>
-					)}
+					)
+					: <Card>No bacchas :-\</Card>
+					}
 					</div>
 				</div>
-				: <SCard data={props.data}>
+				: <SCard 
+					data={props.data}
+					compact={false}
+				>
 					<Button
 						onClick={(event) => {
 							event.stopPropagation();

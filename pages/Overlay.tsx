@@ -9,12 +9,18 @@ export default function Overlay(props) {
 		if (props.children !== "") setOpen(true);
 	}, [props.children]);
 	
+// 	style={{
+// 				display:"flex",
+// 				alignItems:"center",
+// 				justifyContent:"space-evenly",
+// 				overflow:"auto"
+// 			}}
+	
 	return(
 		<Modal
 			style={{
 				display:"flex",
-				alignItems:"center",
-				justifyContent:"space-evenly"
+				overflow:"auto"
 			}}
 			open={open}
 			onClick={() => {
@@ -25,12 +31,8 @@ export default function Overlay(props) {
 		>
 		<div
 			style={{
-				maxWidth:"80vw"
-			}}
-			onClick={(event) => {
-				event.stopPropagation();
-				console.log(event.target);
-				console.log(event.currentTarget);
+				maxWidth:"80vw",
+				margin:"auto"
 			}}
 		>
 		{props.children}

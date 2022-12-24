@@ -62,7 +62,7 @@ export default function Home(props) {
 							}
 						}
 						if (!(bigtest)) { //no name matches -> check roll no, username
-							ret = ret && (st.i.includes(query.name) || st.u.includes(query.name)); //if both are false, then ret becomes false
+							ret = ret && (st.i.includes(query.name) || st.u.startsWith(query.name)); //if both are false, then ret becomes false - starts with for username to avoid anish -> Manish (with username manish) coming up
 						} //else: this is when bigtest is true, i.e. the name matches the students actual name - then don't do anything because ret is true by default
 					} else if (typeof(query[key]) === "string") { //gender or hometown
 						ret = ret && (st[key[0]].toLowerCase().includes(query[key].toLowerCase()));
