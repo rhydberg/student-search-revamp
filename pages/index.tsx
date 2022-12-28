@@ -12,6 +12,7 @@ import {DarkModeSharp, LightModeRounded, HelpOutlineRounded, MailOutlineRounded}
 import STUDENTS from "./student_data_getter.tsx";
 import {rollToYear} from "./parseData.tsx";
 import TreeCard from "./treeSCard.tsx";
+import SCard from "./SCard.tsx";
 
 export default function Home(props) {
 
@@ -92,13 +93,28 @@ export default function Home(props) {
 	
 	const displayCard = (student) =>{
 		clearOverlay();
+		setCurr(<SCard
+			compact={false}
+			data={student}
+			key="closed"
+		>
+		<Button
+			onClick={() => {displayTree(student);}}
+		>Open Family Tree</Button>
+		</SCard>);
+	}
+	
+	const displayTree = (student) => {
+		clearOverlay();
 		setCurr(<TreeCard
+			key="open"
 			data={student}
 			baapu={STUDENTS.filter((st) => (st.i === student.s))[0] /*TreeCard'll handle undefined*/}
 			bacchas={doQuery({
 				i:student.c //an array -> setQuery will check if roll number included - even if this is "Not Available", will just return an empty array
 			})}
 			displayCard={displayCard}
+			clearOverlay={clearOverlay}
 		/>);
 	}
 

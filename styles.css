@@ -141,6 +141,7 @@ img {
 }
 
 .tree-view {
+	width:80vw;
 	display:flex;
 	flex-direction:column;
 	justify-content:flex-start;
@@ -175,6 +176,19 @@ img {
 	margin:10px;
 }
 
+.overlay {
+	width:80vw;
+	margin:auto;
+	display:flex;
+	justify-content:center;
+	
+}
+
+.overlay > * {
+	margin:auto;
+
+}
+
 #count {
 	display:flex;
 	justify-content:space-evenly;
@@ -195,6 +209,18 @@ img {
 	opacity: 1;
 	transition: all 0.3s ease-out;
 }
+
+.overlay > .fade-enter {
+	position: absolute;
+	align-self:center;
+}
+ 
+.overlay > .fade-exit {
+	position: absolute;
+	align-self:center;
+}
+
+
 
 .fade-exit {
 	opacity : 1;

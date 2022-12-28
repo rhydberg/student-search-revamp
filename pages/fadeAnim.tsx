@@ -33,10 +33,9 @@ const  FadeAnim = React.forwardRef((props, ref) => {
 			return (
 				<CSSTransition
 					classNames="fade"
-					timeout={5000}
+					timeout={300}
 					mountOnEnter={true}
 					unmountOnExit={true}
-					ref={ref}
 				>
 				{child}
 				</CSSTransition>

@@ -41,19 +41,14 @@ export default function Overlay(props) {
 			keepMounted={false}
 			onClick={closeModal}
 		>
-		<div style={{
-				maxWidth:"80vw",
-				margin:"auto"
-			}}>
 		<FadeAnim
-			myname="placeholder"
+			myname="overlay"
 			in={open}
 		>
 		{props.children !== ""
 			? (props.children)
 			:[]}
 		</FadeAnim>
-		</div>
 		</Modal>
 	);
 }
