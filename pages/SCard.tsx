@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useEffect, useState} from "react";
 import Card from "@mui/material/Card";
 import Image from "./UserImage.tsx";
 import {EmailRounded, InvertColorsRounded, HomeRounded, AccountBalanceRounded} from "@mui/icons-material";
@@ -7,14 +7,17 @@ import {EmailRounded, InvertColorsRounded, HomeRounded, AccountBalanceRounded} f
 
 //props: data: object with student data
 
-function SCard(props) {
+const SCard = React.forwardRef((props, ref) => {
+
 	switch (props.compact) {
 		case 'ultra':
 			return (
 				<Card
 					className="student-card-ultra-compact"
+					key={props.data.i}
+					ref={ref}
 					style={{
-						cursor:(props.pointer ? "pointer" : "auto"),
+						cursor:(props.pointer ? "pointer" : "auto")
 					}}
 					onClick={(event) => {
 						event.stopPropagation();
@@ -32,6 +35,8 @@ function SCard(props) {
 			return (
 				<Card
 					className="student-card-compact"
+					key={props.data.i}
+					ref={ref}
 					style={{
 						cursor:(props.pointer ? "pointer" : "auto"),
 					}}
@@ -52,8 +57,10 @@ function SCard(props) {
 			return (
 				<Card
 				className="student-card"
+				key={props.data.i}
+				ref={ref}
 				style={{
-					cursor:(props.pointer ? "pointer" : "auto")
+					cursor:(props.pointer ? "pointer" : "auto"),
 				}}
 				onClick={(event) => {
 					event.stopPropagation();
@@ -74,6 +81,6 @@ function SCard(props) {
 				</Card>
 			);
 	}
-}
+});
 
 export default SCard;

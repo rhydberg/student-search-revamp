@@ -2,6 +2,10 @@ body {
 	background-color:#000;
 }
 
+img {
+	object-position:top;
+}
+
 .MuiCard-root {
 	padding:10px;
 }
@@ -62,7 +66,8 @@ body {
 	display:flex;
 	flex-direction:column;
 	justify-content:flex-start;
-	align-items:center
+	align-items:center;
+	transition: opacity 0.3s linear;
 }
 
 .student-card > * {
@@ -96,6 +101,10 @@ body {
 
 .student-card-compact p:first-child {
 	font-weight:bold;
+}
+
+.student-card-compact .data p {
+	margin:5px;
 }
 
 .name, .roll, .dept {
@@ -154,7 +163,7 @@ body {
 	margin:5px;
 }
 
-#display {
+.display {
 	width:90%;
 	margin: auto;
 	display:flex;
@@ -162,7 +171,7 @@ body {
 	flex-wrap:wrap;
 }
 
-#display > * {
+.display > * {
 	margin:10px;
 }
 
@@ -173,4 +182,25 @@ body {
 
 #count * {
 	padding: 10px;
+}
+
+/* animation classes */
+.fade-enter {
+	transform: scale(0.9);
+	opacity: 0;
+}
+
+.fade-enter-active {
+	transform: scale(1);
+	opacity: 1;
+	transition: all 0.3s ease-out;
+}
+
+.fade-exit {
+	opacity : 1;
+}
+
+.fade-exit-active {
+	opacity: 0;
+	transition: opacity 0.3s linear;
 }

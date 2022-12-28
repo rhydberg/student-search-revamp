@@ -123,7 +123,12 @@ export default function Home(props) {
 				
 			})
   	}>
-  	<div className="buttons">
+  	<div 
+  		className="buttons"
+  		style={{
+  			zIndex:"9999"
+  		}}
+  	>
 		<Fab
 		  onClick={()=>{
 					setDarkMode(!darkMode);

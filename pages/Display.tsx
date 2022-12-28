@@ -1,6 +1,8 @@
 import Card from "@mui/material/Card";
 import SCard from "./SCard.tsx";
 import React, {useState, useEffect} from "react";
+import {CSSTransition, TransitionGroup} from "react-transition-group";
+import FadeAnim from "./FadeAnim.tsx";
 
 /*
 name={el.n}
@@ -38,12 +40,12 @@ function Display(props) {
 	useEffect(() => {setPos(50)},[props.toShow]); //reset pos to 50 if new search (i.e. if new props received)
 	return (
 		<div>
-			<div id="count"><Card>{students.length} results found</Card></div>
-			<div id="display">
+			<div id="count"><Card>{students.length} {students.length === 1 ? "result" : "results"} found</Card></div>
+			<FadeAnim myname="display">
 			{students.length > 1000 
-				? <Card>Too many results. Please narrow down your search.</Card> 
+				?<Card key="toomuch" style={{position:"absolute"}}>Too many results. Please narrow down your search.</Card>
 				: students.slice(0,pos)}
-			</div>
+			</FadeAnim>	
 		</div>);
 }
 
